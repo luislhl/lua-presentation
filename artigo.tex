@@ -1,0 +1,45 @@
+\documentclass[a4paper, 12pt]{article}
+% Pacotes
+\usepackage[utf8]{inputenc}    % conversão automática dos acentos
+\usepackage[portuguese]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}          % Inclusão de gráficos
+
+% Formatação
+% Folha A4;
+% Margem Normal (Esq, Dir, Inf, Sup com 2,54cm)
+% Arial, tamanho 12, Espaçamento 1,5. Parágrafo de 1cm
+% Título tamanho 14 em negrito.
+% Seções numeradas, em negrito, arial tamanho 12
+% Estrutura de artigo (Título, Resumo, Desenvolvimento e Conclusão).
+% Máximo 10 páginas.
+\title{\textbf{Cloud Computing}}
+\author{Bruno Campana\\Jan Segre\\Luiz Helder\\Victor Bramigk\\Vinícius Ramos}
+\date{\today}
+\geometry{
+  textwidth=6in,
+  textheight=12pt,
+  marginparsep=25.4mm,
+  marginparwidth=.6in,
+  top=25.4mm,
+  bottom=25.4mm
+} 
+
+\begin{document}
+\maketitle
+ 
+\doublespacing
+\input{doc/resumo}
+% Outline do artigo
+% - Definição
+% - Importância
+% - Areas de relevancia
+% - Casos de uso
+% - Desafios técnicos
+% - Vantagens competitivas
+\input{doc/introducao}
+\input{doc/desenvolvimento}
+\input{doc/conclusao}
+
+\end{document}
