@@ -1,0 +1,11 @@
+*.swp
+*.log
+*.aux
+*.make
+*.d
+*.fls
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
