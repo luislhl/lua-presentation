@@ -112,7 +112,6 @@
   \frametitle{Tipos}
   \begin{block}{}
     Lua é dinamicamente tipada. 
-    
     Não há definições de tipos na linguagem, os valores carregam seu próprio tipo.
   
     A linguagem define 8 tipos de dados:
@@ -156,21 +155,21 @@
     \begin{itemize}
       \item Table usado como um Record: 
         \begin{lstlisting}
-     point = { x = 10, y = 20 }   -- Create new table
-     print(point["x"])            -- Prints 10
-     print(point.x)               -- Has exactly the same meaning as line above. The easier-to-read dot notation is just syntactic sugar.
+    point = { x = 10, y = 20 }   -- Create new table
+    print(point["x"])            -- Prints 10
+    print(point.x)               -- Has exactly the same meaning as line above. The easier-to-read dot notation is just syntactic sugar.
         \end{lstlisting}
       \item Table usado como namespace:
         \begin{lstlisting}
-        Point = {}
-         
-        Point.new = function(x, y)
-          return {x = x, y = y}  --  return {["x"] = x, ["y"] = y}
-          end
-           
-          Point.set_x = function(point, x)
-            point.x = x  --  point["x"] = x;
-            end
+    Point = {}
+     
+    Point.new = function(x, y)
+      return {x = x, y = y}  --  return {["x"] = x, ["y"] = y}
+      end
+       
+      Point.set_x = function(point, x)
+        point.x = x  --  point["x"] = x;
+        end
         \end{lstlisting}
     \end{itemize}
   \end{block}
