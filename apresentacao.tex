@@ -257,8 +257,54 @@
 \begin{frame}[fragile]
   \frametitle{Comandos - Estruturas de controle}
   \begin{block}{}
-    %TODO
+    \begin{lstlisting}
+    if condition then
+      --statements
+    elseif condition then
+      --statements
+    else
+      --statements
+    end
+
+    while condition do
+      --statements
+    end
+     
+    repeat
+      --statements
+    until condition
+       
+    for i = first,last,delta do     --delta may be negative, allowing the for loop to count down
+      -- break or goto exit the loop
+    end
+
+    for key, value in pairs(_G) do
+      print(key, value)
+      -- break exit the loop
+    end
+    \end{lstlisting}
   \end{block}
+\end{frame}
+
+\section{Exemplos de Algoritmos}
+\begin{frame}[fragile]
+  \frametitle{Bubblesort}
+  \begin{lstlisting}
+  function bubbleSort(A)
+    local itemCount=#A
+    local hasChanged
+    repeat
+      hasChanged = false
+      itemCount=itemCount - 1
+      for i = 1, itemCount do
+        if A[i] > A[i + 1] then
+          A[i], A[i + 1] = A[i + 1], A[i]
+          hasChanged = true
+        end
+      end
+    until hasChanged == false
+  end
+  \end{lstlisting}
 \end{frame}
 
 \end{document}
