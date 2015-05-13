@@ -12,8 +12,6 @@
 
 \lstset{frame=tb,
   language=[5.2]Lua,
-  aboveskip=3mm,
-  belowskip=3mm,
   showstringspaces=false,
   columns=flexible,
   basicstyle={\tiny\ttfamily},
@@ -109,32 +107,152 @@
   \end{block}
 \end{frame}
 
+\section{Valores e Tipos de Dados}
 \frame{%
-  \frametitle{Definições e Declarações}
+  \frametitle{Tipos}
   \begin{block}{}
-      \centering
-      \begin{itemize}
-        \item Lua é dinamicamente tipada.
-        \item Não há definições de tipos na linguagem, os valores carregam seu próprio tipo.
-      \end{itemize}
+    Lua é dinamicamente tipada. 
+    
+    Não há definições de tipos na linguagem, os valores carregam seu próprio tipo.
+  
+    A linguagem define 8 tipos de dados:
+    \begin{itemize}
+      \item nil
+      \item boolean
+      \item number (integer/float)
+      \item string
+      \item function
+      \item userdata (bloco de dados do programa em C)
+      \item thread
+      \item table (único tipo composto)
+    \end{itemize}
   \end{block}
 }
 
-\section{Valores e Tipos de Dados}
 \frame{%
-  \frametitle{Definições e Declarações}
+  \frametitle{Tables}
   \begin{block}{}
-      \centering
-      \begin{itemize}
-        \item Lua é dinamicamente tipada.
-        \item Não há definições de tipos na linguagem, os valores carregam seu próprio tipo.
-      \end{itemize}
+    Implementam a ideia de array associativo, ou seja, associam chaves e
+        valores. As chaves podem ser qualquer valor menos nil e NaN.
+
+    São o único mecanismo de estrutura de dados em Lua.
+
+    Podem ser usadas para criar:
+    \begin{itemize}
+      \item Arrays
+      \item Records
+      \item Sets
+      \item Trees
+      \item Namespaces
+      \item Classes
+      \item Etc.
+    \end{itemize}
   \end{block}
 }
+
+\begin{frame}[fragile]
+  \frametitle{Tables - exemplos}
+  \begin{block}{}
+    \begin{itemize}
+      \item Table usado como um Record: 
+        \begin{lstlisting}
+     point = { x = 10, y = 20 }   -- Create new table
+     print(point["x"])            -- Prints 10
+     print(point.x)               -- Has exactly the same meaning as line above. The easier-to-read dot notation is just syntactic sugar.
+        \end{lstlisting}
+      \item Table usado como namespace:
+        \begin{lstlisting}
+        Point = {}
+         
+        Point.new = function(x, y)
+          return {x = x, y = y}  --  return {["x"] = x, ["y"] = y}
+          end
+           
+          Point.set_x = function(point, x)
+            point.x = x  --  point["x"] = x;
+            end
+        \end{lstlisting}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\frame{%
+  \frametitle{Metatables}
+  \begin{block}{}
+    \begin{itemize}
+      \item Controlam como objetos se comportam ao serem submetidos a determinados
+    eventos, como operações aritméticas, comparações e indexações, ou ao ser
+    \emph{garbage collected}.
+      \item Uma metatable é uma table associada ao objeto, onde as chaves são
+        o nome do evento, e os valores são funções, chamadas de
+        \emph{metamethods}, a
+        serem chamadas na ocorrência do evento.
+      \item No caso de operações binárias, Lua procura no primeiro operando um \emph{metamethod}
+        definido para o evento correspondente. Caso não encontre, procura no
+        segundo operando.
+    \end{itemize}
+  \end{block}
+}
+
+\frame{%
+  \frametitle{Metatables - exemplos de eventos}
+  \begin{block}{}
+    \begin{itemize}
+      \item add - Ocorre ao aplicar-se o operador + ao objeto.
+      \item eq - Ocorre ao aplicar-se o perador == ao objeto. 
+      \item index - Se o objeto for uma \emph{Table}, ocorre ao tentar-se
+        acessar um índice inexistente. Caso contrário, ao tentar-se acessar
+        acessar qualquer índice. O \emph{metamethod} pode ser tanto uma
+        função quanto uma Table.
+      \item call - Ocorre caso o objeto não seja uma \emph{function} e
+        tenta-se aplicar o operador de chamada () nele.
+    \end{itemize}
+  \end{block}
+}
+
+\begin{frame}[fragile]
+  \frametitle{Metatables - exemplo de uso}
+  \begin{block}{}
+    Fibonacci em Lua usando-se Tables e Metatables
+    \begin{lstlisting}
+    fibs = { 1, 1 }                                -- Initial values for fibs[1] and fibs[2].
+    setmetatable(fibs, {
+      __index = function(values, n)                --[[ __index is a function predefined by Lua, 
+                                                        it is called if key "n" does not exist. ]]
+        values[n] = values[n - 1] + values[n - 2]  -- Calculate and memorize fibs[n].
+        return values[n]
+      end
+    })
+    \end{lstlisting}
+  \end{block}
+\end{frame}
 
 \section{Variáveis e Constantes}
 
 \section{Expressões e Comandos}
+\begin{frame}[fragile]
+  \frametitle{Comandos - Atribuição}
+  \begin{block}{}
+    \begin{itemize}
+      \item Lua suporta atribuição múltipla:
+        \begin{lstlisting}
+          x, y = 2, 3
+        \end{lstlisting}
+      \item Todas as expressões no comando são avaliadas antes das atribuições serem
+        realizadas. O código a seguir altera a[3], não a[4]:
+        \begin{lstlisting}
+          i = 3
+          i, a[i] = i+1, 20
+        \end{lstlisting}
+      \item Funções podem ser chamadas na lista de valores à direita:
+        \begin{lstlisting}
+        function f()
+          return 2,3
+        a,b,c = 1, f()
+        \end{lstlisting}
+    \end{itemize}
+  \end{block}{}
+\end{frame}
 
 \end{document}
 % vim: tw=80 et ts=2 sw=2 sts=2
