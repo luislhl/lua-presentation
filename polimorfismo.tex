@@ -10,11 +10,11 @@
     
   \begin{block}{}
     \begin{lstlisting}
-        print (2 ^ “3”) –> 6
+        print (2 ^ "3") -- output: 6
     \end{lstlisting}
   \end{block}
     
-    A string “3” é convertida para o inteiro 3,
+    A string "3" é convertida para o inteiro 3,
     tornando a operação possível.
   \end{block}
 \end{frame}
@@ -35,13 +35,13 @@ tipo a uma tabela (exceto nil).
     \centering
     \begin{lstlisting}
     t = {}
-    table.insert( t, “10” )
+    table.insert( t, "10" )
     table.insert( t, 10 )
     table.insert( t, function() return 10 end )
     for k, v in pairs( t ) do
        print( type(v), v )
     end
-    Imprimirá:
+    -- Imprime:
     string 10
     number 10
     function     function: 0xa037158
