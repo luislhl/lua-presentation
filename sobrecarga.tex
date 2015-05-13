@@ -1,0 +1,36 @@
+\frame{%
+  \frametitle{Sobrecarga}
+  \begin{block}
+    \centering
+Todo valor em Lua pode ter uma metatabela. 
+ metatabela: tabela que define o comportamento
+do valor original com relação a certas operações especiais.
+  \end{block}
+}
+
+\begin{frame}[fragile]{%
+  \frametitle{Sobrecarga}
+  \begin{block}
+    \centering
+Exemplo:
+
+  \begin{lstlisting}
+  function foo (o1, o2) 
+    print( '__eq call' )
+    return false 
+  end
+  
+  t1 = {}
+  setmetatable( t1, {__eq = foo} )
+  
+  t2 = t1
+  print( t1 == t2 ) --> true
+          -- string '__eq call' not printed
+  
+  t3 = {}
+  setmetatable( t3, {__eq = foo} )
+  if t1 == t3 then end  --> __eq call
+          -- foo(...) was called
+  \end{lstlisting}
+  \end{block}
+\end{frame}
