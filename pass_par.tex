@@ -1,0 +1,60 @@
+\begin{frame}
+  \frametitle{Passagem de parâmetros}
+  \begin{block}{}
+    \begin{itemize}
+    \item Em lua parâmetros são passados por valor.
+    \item As referências dos parâmetros internos são mantidas.
+    \item Valores do tipo table, function, thread e userdata são objetos
+    \item Atribuição, passagem de parâmetro, e retorno de
+          funções sempre lidam com referências para tais valores
+    \item estas operações não implicam em qualquer espécie de cópia
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Passagem de parâmetros}
+  \begin{block}{}
+   \begin{lstlisting}
+     a = { value = 0 }
+   \end{lstlisting}
+   \begin{block}{}
+     O valor de a é um objeto (tabela). Se parâmetro de
+     uma função *valor* será passado é uma
+     referência.
+   \end{block}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Passagem de parâmetros}
+  \begin{lstlisting}
+  function inc(param)
+    param.value = param.value + 1
+  end
+  
+  function inc(param)
+    param = nil
+  end
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Passagem de parâmetros}
+  \begin{block}{}
+    Implementação da chamada em C:
+    
+    \begin{lstlisting}
+    void lua_call (lua_State *L, int nargs, int nresults);
+    \end{lstlisting}
+    
+    a função a ser chamada é empilhada na pilha;
+    os argumentos da função são empilhados em ordem direta;
+    lua_call é chamada 
+    
+    Todos os argumentos e o valor da função são desempilhados
+    da pilha quando a função é chamada. 
+    Os resultados da função são empilhados na pilha quando
+    a função retorna. 
+  \end{block}
+\end{frame}
