@@ -1,0 +1,22 @@
+\frame{%
+  \frametitle{Exceções}
+  \begin{block}
+    \centering
+ Ações de Lua começam a partir de código C no programa hospedeiro
+ que chama uma função da biblioteca de Lua (ver \textbf{lua_pcall})
+  \end{block}
+  \begin{block}
+    \centering
+Sempre que um erro ocorre durante a compilação ou execução,
+O controle retorna para C, que pode tomar as medidas apropriadas
+  \end{block}
+}
+
+\frame{%
+  \frametitle{Exceções}
+  \begin{block}
+    \centering
+O código Lua pode explicitamente gerar um erro através de uma chamada
+à função error. É possível capturar erros com a função \textbf{pcall} 
+  \end{block}
+}
