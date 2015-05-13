@@ -3,7 +3,29 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{listings}			% Para usar \lstinputlisting e incluir código
+\usepackage{color}
 \usepackage{multicol}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=[5.2]Lua,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\tiny\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 \title[Computação em nuvem]{%
   Cloud Computiong
@@ -17,6 +39,7 @@
 \graphicspath{{img/}}
 
 \begin{document}
+
 \frame{\maketitle}
 
 \frame{%
@@ -57,7 +80,59 @@
   \end{block}
 }
 
+\section{Amarrações}
+\begin{frame}[fragile]
+  \frametitle{Escopo}
+  \begin{block}{}
+      \centering
+      \begin{itemize}
+        \item Toda variável é global, a não ser que seja explicitamente
+          declarada como local. 
+        \item Utiliza-se 'local' para declaração de variáveis locais.
+      \end{itemize}
+  \end{block}
+  \begin{block}{}
+    \begin{lstlisting}
+     x = 10                -- global variable
+     do                    -- new block
+       local x = x         -- new 'x', with value 10
+       print(x)            --> 10
+       x = x+1
+       do                  -- another block
+         local x = x+1     -- another 'x'
+         print(x)          --> 12
+       end
+       print(x)            --> 11
+     end
+     print(x)              --> 10  (the global one)
+    \end{lstlisting}
+  \end{block}
+\end{frame}
+
+\frame{%
+  \frametitle{Definições e Declarações}
+  \begin{block}{}
+      \centering
+      \begin{itemize}
+        \item Lua é dinamicamente tipada.
+        \item Não há definições de tipos na linguagem, os valores carregam seu próprio tipo.
+      \end{itemize}
+  \end{block}
+}
+
 \section{Valores e Tipos de Dados}
+\frame{%
+  \frametitle{Definições e Declarações}
+  \begin{block}{}
+      \centering
+      \begin{itemize}
+        \item Lua é dinamicamente tipada.
+        \item Não há definições de tipos na linguagem, os valores carregam seu próprio tipo.
+      \end{itemize}
+  \end{block}
+}
+
+\section{Variáveis e Constantes}
 
 \section{Expressões e Comandos}
 
