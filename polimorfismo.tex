@@ -1,0 +1,50 @@
+\begin{frame}[fragile]
+  \frametitle{Polimorfismo}
+  \begin{block}{}
+    \centering
+    Formas: coerção, sobrecarga e paramétrico.\\
+
+    A coerção é feita quando se opera um operando de um tipo e um valor
+    de outro tipo é fornecido, desde que esse tipo possa ser convertido.
+    Exemplo:
+    
+  \begin{block}{}
+    \begin{lstlisting}
+        print (2 ^ “3”) –> 6
+    \end{lstlisting}
+  \end{block}
+    
+    A string “3” é convertida para o inteiro 3,
+    tornando a operação possível.
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Polimorfismo}
+  \begin{block}{}
+    \centering
+Não é necessário declarar o tipo dos parâmetros formais. 
+Exemplo, a função table.insert adiciona um valor de qualquer
+tipo a uma tabela (exceto nil).
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Polimorfismo}
+  \begin{block}{}
+    \centering
+    \begin{lstlisting}
+    t = {}
+    table.insert( t, “10” )
+    table.insert( t, 10 )
+    table.insert( t, function() return 10 end )
+    for k, v in pairs( t ) do
+       print( type(v), v )
+    end
+    Imprimirá:
+    string 10
+    number 10
+    function     function: 0xa037158
+    \end{lstlisting}
+  \end{block}
+\end{frame}
