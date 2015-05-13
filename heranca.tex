@@ -1,13 +1,13 @@
 \begin{frame}[fragile]
   \frametitle{Herança}
-  \begin{block}{}
   \begin{lstlisting}
     Rectangle = { width = 0, height = 0 }
 
     Cuboid = Rectangle:new ({depth=0})
   \end{lstlisting}
-
+  \begin{block}{}
    Para definir a função volume do Cuboid, fazemos:
+  \end{block}
 
   \begin{lstlisting}
     function Cuboid:volume ()
@@ -16,12 +16,9 @@
 
     end
   \end{lstlisting}
+  \begin{block}{}
+	Herança múltipla:
   \end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Herança múltiplas}
-
   \begin{lstlisting}
     Button = {
     super = { Shape, EventResponser }

@@ -7,14 +7,13 @@
     \item Valores do tipo table, function, thread e userdata são objetos
     \item Atribuição, passagem de parâmetro, e retorno de
           funções sempre lidam com referências para tais valores
-    \item estas operações não implicam em qualquer espécie de cópia
+    \item Estas operações não implicam em qualquer espécie de cópia
     \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Passagem de parâmetros}
-  \begin{block}{}
    \begin{lstlisting}
      a = { value = 0 }
    \end{lstlisting}
@@ -23,11 +22,7 @@
      uma função *valor* será passado é uma
      referência.
    \end{block}
-  \end{block}
-\end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Passagem de parâmetros}
   \begin{lstlisting}
   function inc(param)
     param.value = param.value + 1
